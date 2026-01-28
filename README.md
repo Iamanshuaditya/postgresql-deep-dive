@@ -13,7 +13,9 @@ This course takes you through PostgreSQL's source code and internal mechanisms:
 - **MVCC & Concurrency**: Transaction isolation, visibility, locking
 - **WAL & Durability**: Write-ahead logging, checkpoints, recovery
 - **VACUUM & Maintenance**: Dead tuple cleanup, XID wraparound prevention
-- **Query Optimization**: Join algorithms, parallel execution, EXPLAIN analysis
+- **Query Optimization**: Join algorithms, parallel execution, cost model
+- **Replication**: Streaming and logical replication
+- **Advanced Topics**: Partitioning, extensions, connection pooling
 
 ## 📚 Course Structure
 
@@ -34,12 +36,15 @@ This course takes you through PostgreSQL's source code and internal mechanisms:
 | 8 | [Heap Storage and Page Layout](lessons/module_02_storage/lesson_08_heap_storage.md) |
 | 9 | [B-tree Index Structure](lessons/module_02_storage/lesson_09_btree_indexes.md) |
 | 10 | [Tablespaces and Relation Files](lessons/module_02_storage/lesson_10_tablespaces_files.md) |
+| 25 | [TOAST — The Oversized-Attribute Storage Technique](lessons/module_02_storage/lesson_25_toast.md) |
+| 26 | [HOT Updates — Heap-Only Tuples for Better Performance](lessons/module_02_storage/lesson_26_hot_updates.md) |
 
 ### Module 3: Memory Management
 | Lesson | Topic |
 |--------|-------|
 | 11 | [The Buffer Manager](lessons/module_03_memory/lesson_11_buffer_manager.md) |
 | 12 | [Work Memory — Sorting, Hashing, and Per-Operation Memory](lessons/module_03_memory/lesson_12_work_mem.md) |
+| 33 | [Shared Memory — PostgreSQL's Common Data Structures](lessons/module_03_memory/lesson_33_shared_memory.md) |
 
 ### Module 4: Write-Ahead Logging
 | Lesson | Topic |
@@ -66,7 +71,13 @@ This course takes you through PostgreSQL's source code and internal mechanisms:
 ### Module 8: Index Internals
 | Lesson | Topic |
 |--------|-------|
-| 19 | [GIN, GiST, and Specialized Indexes](lessons/module_08_indexes/lesson_19_specialized_indexes.md) |
+| 19 | [GIN, GiST, BRIN, SP-GiST, and Hash Indexes](lessons/module_08_indexes/lesson_19_specialized_indexes.md) |
+
+### Module 9: System Catalogs
+| Lesson | Topic |
+|--------|-------|
+| 23 | [System Catalogs — PostgreSQL's Metadata Store](lessons/module_09_catalogs/lesson_23_system_catalogs.md) |
+| 24 | [Statistics and the Query Planner](lessons/module_09_catalogs/lesson_24_statistics.md) |
 
 ### Module 10: Join Optimization
 | Lesson | Topic |
@@ -77,11 +88,25 @@ This course takes you through PostgreSQL's source code and internal mechanisms:
 | Lesson | Topic |
 |--------|-------|
 | 20 | [Parallel Query Execution](lessons/module_11_optimization/lesson_20_parallel_query.md) |
+| 32 | [The Cost Model — How PostgreSQL Estimates Query Costs](lessons/module_11_optimization/lesson_32_cost_model.md) |
 
 ### Module 12: PostgreSQL Architecture
 | Lesson | Topic |
 |--------|-------|
 | 21 | [Background Processes](lessons/module_12_architecture/lesson_21_background_processes.md) |
+| 31 | [Connection Pooling — Managing Database Connections](lessons/module_12_architecture/lesson_31_connection_pooling.md) |
+
+### Module 13: Replication
+| Lesson | Topic |
+|--------|-------|
+| 27 | [Streaming Replication — High Availability with Physical Replicas](lessons/module_13_replication/lesson_27_streaming_replication.md) |
+| 28 | [Logical Replication — Selective, Cross-Version Data Streaming](lessons/module_13_replication/lesson_28_logical_replication.md) |
+
+### Module 14: Advanced Features
+| Lesson | Topic |
+|--------|-------|
+| 29 | [Partitioning — Divide and Conquer Large Tables](lessons/module_14_advanced/lesson_29_partitioning.md) |
+| 30 | [Extensions — Extending PostgreSQL's Capabilities](lessons/module_14_advanced/lesson_30_extensions.md) |
 
 ## 🛠️ Prerequisites
 
@@ -125,14 +150,42 @@ Many exercises use the `pageinspect` and `pgstattuple` extensions:
 ```sql
 CREATE EXTENSION pageinspect;
 CREATE EXTENSION pgstattuple;
+CREATE EXTENSION pg_buffercache;
 ```
 
 ## 📊 Course Statistics
 
-- **22 Lessons** covering core PostgreSQL internals
-- **12 Modules** organized by topic
-- **100+ Hands-on exercises**
-- **50+ ASCII diagrams** explaining internal structures
+- **33 Lessons** covering core PostgreSQL internals
+- **14 Modules** organized by topic
+- **150+ Hands-on exercises**
+- **100+ ASCII diagrams** explaining internal structures
+
+## 🎯 Topics Covered
+
+### Core Internals
+✅ Query Processing Pipeline
+✅ Storage Engine (Heap, Pages, TOAST)
+✅ Memory Management (Buffers, Shared Memory)
+✅ MVCC and Visibility
+✅ Write-Ahead Logging
+✅ VACUUM and Maintenance
+✅ Transaction Isolation and Locking
+
+### Performance
+✅ B-tree and Specialized Indexes
+✅ Join Algorithms
+✅ Parallel Query Execution
+✅ Cost Model and Statistics
+✅ HOT Updates
+
+### Operations
+✅ Background Processes
+✅ Streaming Replication
+✅ Logical Replication
+✅ Connection Pooling
+✅ Partitioning
+✅ Extensions
+✅ XID Wraparound Prevention
 
 ## 🤝 Contributing
 
